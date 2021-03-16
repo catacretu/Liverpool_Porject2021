@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +30,10 @@ public class MyRecycleView extends AppCompatActivity {
         data.putExtra("result",label.toString());
         setResult(Activity.RESULT_OK,data);
         final ArrayList<Player> playersMake=new ArrayList<>();
+        final LinkedHashMap<Integer, Integer> list_of_name_players
+                = new LinkedHashMap<Integer, Integer>();
+        //add references to image player
+        initialize_list_with_references(list_of_name_players);
         PlayerApi api=getRetrofit().create(PlayerApi.class);
         Call<ArrayList<Player>> listplayers=api.getPersons("Data1");
         listplayers.enqueue(new Callback<ArrayList<Player>>() {
@@ -38,26 +43,10 @@ public class MyRecycleView extends AppCompatActivity {
                 if (response.isSuccessful()) {
                    // Log.d("Response", response.body().toString());
                     ArrayList<Player> aux=response.body();
+
                     for(int i=0;i<aux.size();i++) {
+                        playersMake.add(new Player(aux.get(i).getName(), aux.get(i).getPosition(),list_of_name_players.get(i)));
 
-                        switch (i) {
-                            case 0:
-                                playersMake.add(new Player(aux.get(i).getName(), aux.get(i).getPosition(),R.drawable.mo_salah));
-                                break;
-                            case 1:
-                                playersMake.add(new Player(aux.get(i).getName(), aux.get(i).getPosition(),R.drawable.sadio_mane));
-                                break;
-                            case 2:
-                                playersMake.add(new Player(aux.get(i).getName(), aux.get(i).getPosition(),R.drawable.firmino));
-                                break;
-                            case 3:
-                                playersMake.add(new Player(aux.get(i).getName(), aux.get(i).getPosition(),R.drawable.alisson));
-                                break;
-                            case 4:
-                                playersMake.add(new Player(aux.get(i).getName(), aux.get(i).getPosition(),R.drawable.van_dijk));
-                                break;
-
-                        }
                     }
                     RecyclerView rv=findViewById(R.id.rv);
                     rv.setAdapter(new MyAdapter(MyRecycleView.this,playersMake));
@@ -74,6 +63,30 @@ public class MyRecycleView extends AppCompatActivity {
             }
         });
 
+    }
+    public LinkedHashMap<Integer, Integer> initialize_list_with_references(LinkedHashMap<Integer,Integer> list_of_name_players)
+    {
+        list_of_name_players.put(0,R.drawable.mo_salah);
+        list_of_name_players.put(1,R.drawable.sadio_mane);
+        list_of_name_players.put(2,R.drawable.firmino);
+        list_of_name_players.put(3,R.drawable.wijnaldum);
+        list_of_name_players.put(4,R.drawable.keita);
+        list_of_name_players.put(5,R.drawable.henderson);
+        list_of_name_players.put(6,R.drawable.arnold);
+        list_of_name_players.put(7,R.drawable.van_dijk);
+        list_of_name_players.put(8,R.drawable.matip);
+        list_of_name_players.put(9,R.drawable.robertson);
+        list_of_name_players.put(10,R.drawable.alisson);
+        list_of_name_players.put(11,R.drawable.origi);
+        list_of_name_players.put(12,R.drawable.shaqiri);
+        list_of_name_players.put(13,R.drawable.lallana);
+        list_of_name_players.put(14,R.drawable.milner);
+        list_of_name_players.put(15,R.drawable.fabinho);
+        list_of_name_players.put(16,R.drawable.gomez);
+        list_of_name_players.put(17,R.drawable.lovren);
+        list_of_name_players.put(18,R.drawable.mignolet);
+
+        return list_of_name_players;
     }
     public static Retrofit getRetrofit() {
         if (retrofit == null) {

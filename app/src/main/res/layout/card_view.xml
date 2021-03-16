@@ -5,12 +5,15 @@
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
+
     android:layout_margin="10dp"
+
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#b8192b"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/image"
@@ -28,7 +31,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:text="Name"
                 android:padding="10dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="#ffffff"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/position"
@@ -36,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:text="Position"
+                android:textColor="#ffffff"
                 android:lines="1"
                 android:padding="10dp"/>
         </LinearLayout>
@@ -44,7 +48,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:paddingEnd="10dp"
-            android:src="@drawable/icon1"
+            android:src="@drawable/liverpoolfc"
             />
     </LinearLayout>
 </android.support.v7.widget.CardView>

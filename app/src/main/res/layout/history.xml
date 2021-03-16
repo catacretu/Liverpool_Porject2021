@@ -5,7 +5,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HISTORY"
+        android:background="#ab1a21"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="@string/history_text"
         android:textSize="20sp" />
 
 </ScrollView>
