@@ -2,17 +2,17 @@ package com.example.liverpool;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Player {
+public class PlayerEntity {
     @SerializedName("name")
     private String name;
     @SerializedName("position")
     private String position;
     int image;
 
-    public Player(String name, String position,int image) {
+    public PlayerEntity(String name, String position, int image) {
         this.name = name;
         this.position = position;
-        this.image=image;
+        this.image = image;
 
     }
 

@@ -18,16 +18,14 @@
                 <data android:scheme="https"/>
             </intent-filter>
         </activity>
-        <activity android:name=".History">
+        <activity android:name=".HistoryScreen">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW">
-                </action>
+                <action android:name="android.intent.action.VIEW"></action>
             </intent-filter>
         </activity>
-        <activity android:name=".MyRecycleView">
+        <activity android:name=".LineupScreen">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW">
-                </action>
+                <action android:name="android.intent.action.VIEW"></action>
             </intent-filter>
         </activity>
 

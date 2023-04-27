@@ -12,24 +12,25 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     Context c;
-    ArrayList<Player> players;
+    ArrayList<PlayerEntity> playersList;
 
-    public MyAdapter(Context c, ArrayList<Player> players) {
+    public MyAdapter(Context c, ArrayList<PlayerEntity> playersList) {
         this.c = c;
-        this.players=players;
+        this.playersList = playersList;
     }
+
     //view item
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v= LayoutInflater.from(c).inflate(R.layout.card_view,viewGroup,false);
+        View v = LayoutInflater.from(c).inflate(R.layout.card_view, viewGroup, false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         //jucatorul curent
-        Player p=players.get(i);
+        PlayerEntity p = playersList.get(i);
         //interconectam datele
         myViewHolder.name.setText(p.getName());
         myViewHolder.position.setText(p.getPosition());
@@ -38,6 +39,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     //nr total de jucatori
     @Override
     public int getItemCount() {
-        return players.size();
+        return playersList.size();
     }
 }

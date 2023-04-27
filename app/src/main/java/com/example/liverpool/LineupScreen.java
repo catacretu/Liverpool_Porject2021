@@ -17,40 +17,40 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MyRecycleView extends AppCompatActivity {
+public class LineupScreen extends AppCompatActivity {
     private static final String BASE_URL = "https://raw.githubusercontent.com/";
     private static Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recycler_view);
-        String label=getIntent().getStringExtra("key");
-        Intent data=new Intent();
-        data.putExtra("result",label.toString());
-        setResult(Activity.RESULT_OK,data);
-        final ArrayList<Player> playersMake=new ArrayList<>();
+        setContentView(R.layout.lineup_screen);
+        String label = getIntent().getStringExtra("key");
+        Intent data = new Intent();
+        data.putExtra("result", label.toString());
+        setResult(Activity.RESULT_OK, data);
+        final ArrayList<PlayerEntity> playersMake = new ArrayList<>();
         final LinkedHashMap<Integer, Integer> list_of_name_players
                 = new LinkedHashMap<Integer, Integer>();
         //add references to image player
         initialize_list_with_references(list_of_name_players);
-        PlayerApi api=getRetrofit().create(PlayerApi.class);
-        Call<ArrayList<Player>> listplayers=api.getPersons("Data1");
-        listplayers.enqueue(new Callback<ArrayList<Player>>() {
+        PlayerApi api = getRetrofit().create(PlayerApi.class);
+        Call<ArrayList<PlayerEntity>> listplayers = api.getPersons("Data1");
+        listplayers.enqueue(new Callback<ArrayList<PlayerEntity>>() {
 
             @Override
-            public void onResponse(Call<ArrayList<Player>> call, Response<ArrayList<Player>> response) {
+            public void onResponse(Call<ArrayList<PlayerEntity>> call, Response<ArrayList<PlayerEntity>> response) {
                 if (response.isSuccessful()) {
-                   // Log.d("Response", response.body().toString());
-                    ArrayList<Player> aux=response.body();
+                    // Log.d("Response", response.body().toString());
+                    ArrayList<PlayerEntity> aux = response.body();
 
-                    for(int i=0;i<aux.size();i++) {
-                        playersMake.add(new Player(aux.get(i).getName(), aux.get(i).getPosition(),list_of_name_players.get(i)));
+                    for (int i = 0; i < aux.size(); i++) {
+                        playersMake.add(new PlayerEntity(aux.get(i).getName(), aux.get(i).getPosition(), list_of_name_players.get(i)));
 
                     }
-                    RecyclerView rv=findViewById(R.id.rv);
-                    rv.setAdapter(new MyAdapter(MyRecycleView.this,playersMake));
-                    rv.setLayoutManager(new LinearLayoutManager((MyRecycleView.this)));
+                    RecyclerView rv = findViewById(R.id.rv);
+                    rv.setAdapter(new MyAdapter(LineupScreen.this, playersMake));
+                    rv.setLayoutManager(new LinearLayoutManager((LineupScreen.this)));
                 } else {
 
                     Log.d("Response", "Response code " + response.code());
@@ -58,7 +58,7 @@ public class MyRecycleView extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Player>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<PlayerEntity>> call, Throwable t) {
                 Log.w("Response", "Error in call", t);
             }
         });
